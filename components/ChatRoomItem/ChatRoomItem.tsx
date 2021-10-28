@@ -5,19 +5,20 @@ import {Text,View,Image,StyleSheet} from 'react-native'
 // import { Text, View } from '../components/Themed';
 // import { RootTabScreenProps } from '../types';
 
-export default function TabOneScreen() {
+export default function TabOneScreen({chatRoom}) {
   return (
      <View style={styles.container}>
-        <Image source ={{uri:'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/elon.png'}} style ={styles.image}/>
+        <Image source ={{uri:chatRoom.users[1].imageUri}} style ={styles.image}/>
+        {chatRoom.newMessages &&
         <View style={styles.badgeContainer}>
            <Text style={styles.badgeText}>4</Text>
-         </View>
+         </View>}
         <View style ={styles.rightContainer}>
         <View style ={styles.row}>
-          <Text style={styles.name}>Elon Musk</Text>
-          <Text style={styles.text}>11:11 AM</Text>
+          <Text style={styles.name}>{chatRoom.users[1].name}</Text>
+          <Text style={styles.text}>{chatRoom.lastMessage.createdAt}</Text>
         </View>
-        <Text numberOfLines={1}  style={styles.text}>Hola Whats are you doing ? gwrhwgrwgr srhetjyrngdbfsdfewtyhtrgdbffwtyjehtgre</Text>
+        <Text numberOfLines={1}  style={styles.text}>{chatRoom.lastMessage.content}</Text>
         </View>
     
      </View>
